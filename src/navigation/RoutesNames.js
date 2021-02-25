@@ -1,0 +1,6 @@
+export const LOGIN = 'Login'
+export const SIGNUP = 'Register'
+export const HOME = 'Home'
+export const CONTACTS = 'Contacts'
+export const SETTINGS = 'Settings'
+export const NOTIFICATIONS = 'Notifications'
