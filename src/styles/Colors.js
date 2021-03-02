@@ -11,5 +11,6 @@ export const Colors = {
   buttonTitle: '#FFFFFF',
   buttonTitleDark: '#54555E',
   description: '#C6C6C6',
-  success: '#00D72F'
+  success: '#00D72F',
+  danger: '#DB2C66'
 }
