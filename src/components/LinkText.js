@@ -4,7 +4,9 @@ import { GlobalStyles } from '../styles'
 
 const LinkText = ({ label, onPressHandler }) => {
   return (
-    <TouchableOpacity onPress={onPressHandler}>
+    <TouchableOpacity
+      onPress={onPressHandler}
+      style={GlobalStyles.linkContainer}>
       <Text style={GlobalStyles.linkText}>{label}</Text>
     </TouchableOpacity>
   )

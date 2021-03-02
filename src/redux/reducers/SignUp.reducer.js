@@ -3,34 +3,33 @@ import * as types from '../constants/ActionTypes'
 const initialState = {
   user: {
     email: '',
-    password: '',
-    repeatedPassword: ''
+    password: ''
   },
   loading: false,
   error: null
 }
 
-const authReducer = (state = initialState, { type, payload }) => {
+const signUpReducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case types.CHANGE_USER: {
+    case types.CHANGE_NEW_USER: {
       return {
         ...state,
         user: payload
       }
     }
-    case types.SIGN_IN_START:
+    case types.SIGN_UP_START:
       return {
         ...state,
         loading: payload
       }
-    case types.SIGN_IN_SUCCESS:
+    case types.SIGN_UP_SUCCESS:
       return {
         ...state,
         loading: false,
         user: payload,
         error: null
       }
-    case types.SIGN_IN_ERROR:
+    case types.SIGN_UP_ERROR:
       return {
         ...state,
         loading: false,
@@ -41,4 +40,4 @@ const authReducer = (state = initialState, { type, payload }) => {
   }
 }
 
-export default authReducer
+export default signUpReducer

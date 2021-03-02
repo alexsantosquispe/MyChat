@@ -10,24 +10,37 @@ export const GlobalStyles = StyleSheet.create({
     paddingVertical: 16,
     backgroundColor: Colors.lightBg
   },
-  welcomeContainer: { marginBottom: 32 },
+  welcomeContainer: {
+    marginBottom: 36
+  },
   inputTextBoxContainer: {
+    marginVertical: 5
+  },
+  inputTextBoxRow: {
     flexDirection: 'row',
     backgroundColor: Colors.inputTextBg,
     borderRadius: 6,
-    marginVertical: 4,
     alignItems: 'center',
     width: '100%'
   },
+  inputTextBoxError: {
+    borderWidth: 2,
+    borderColor: Colors.danger
+  },
+  inputTextErrorMessage: {
+    color: Colors.danger,
+    fontFamily: 'Nunito-SemiBold',
+    fontSize: 13
+  },
   inputTextBox: {
-    width: '100%',
+    flex: 1,
     fontSize: 17,
     fontFamily: 'Nunito-Regular'
   },
   inputTextBoxIcon: {
     paddingHorizontal: 8
   },
-  button: {
+  baseButton: {
     borderRadius: 6,
     backgroundColor: Colors.primaryColor,
     paddingVertical: 12,
@@ -36,13 +49,19 @@ export const GlobalStyles = StyleSheet.create({
     alignItems: 'center',
     elevation: 0
   },
+  button: {
+    backgroundColor: Colors.primaryColor
+  },
+  buttonDisabled: {
+    backgroundColor: Colors.secondColor
+  },
   buttonTitle: {
     fontSize: 17,
     color: Colors.buttonTitle,
     fontFamily: 'Nunito-Bold'
   },
   titleText: {
-    fontSize: 24,
+    fontSize: 26,
     fontFamily: 'Nunito-Bold',
     alignSelf: 'flex-start'
   },
@@ -98,17 +117,29 @@ export const GlobalStyles = StyleSheet.create({
   },
   signUpSectionContainer: {
     flexDirection: 'row',
-    paddingTop: 8
+    marginTop: 16
   },
   noAccount: {
     fontSize: 17,
     fontFamily: 'Nunito-SemiBold',
     color: Colors.buttonTitleDark,
-    paddingRight: 4
+    paddingRight: 4,
+    paddingVertical: 8
+  },
+  linkContainer: {
+    paddingVertical: 8
   },
   linkText: {
     fontSize: 17,
     fontFamily: 'Nunito-Bold',
     color: Colors.primaryColor
+  },
+  backButton: {
+    top: 0,
+    left: 36,
+    justifyContent: 'center',
+    position: 'absolute',
+    height: 64,
+    width: 64
   }
 })
