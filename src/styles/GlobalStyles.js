@@ -10,6 +10,14 @@ export const GlobalStyles = StyleSheet.create({
     paddingVertical: 16,
     backgroundColor: Colors.lightBg
   },
+  subContainer: {
+    flex: 1,
+    padding: 16,
+    backgroundColor: Colors.lightBg
+  },
+  rowContainer: {
+    flexDirection: 'row'
+  },
   welcomeContainer: {
     marginBottom: 36
   },
@@ -42,7 +50,6 @@ export const GlobalStyles = StyleSheet.create({
   },
   baseButton: {
     borderRadius: 6,
-    backgroundColor: Colors.primaryColor,
     paddingVertical: 12,
     margin: 8,
     width: '100%',
@@ -52,13 +59,34 @@ export const GlobalStyles = StyleSheet.create({
   button: {
     backgroundColor: Colors.primaryColor
   },
+  flat: {
+    backgroundColor: Colors.lightBg
+  },
+  outline: {
+    backgroundColor: Colors.lightBg,
+    borderColor: Colors.primaryColor,
+    borderWidth: 2
+  },
   buttonDisabled: {
     backgroundColor: Colors.secondColor
   },
   buttonTitle: {
+    paddingHorizontal: 8,
     fontSize: 17,
     color: Colors.buttonTitle,
     fontFamily: 'Nunito-Bold'
+  },
+  flatTitle: {
+    paddingHorizontal: 8,
+    fontSize: 17,
+    color: Colors.primaryColor,
+    fontFamily: 'Nunito-Bold'
+  },
+  bigTitle: {
+    color: Colors.darkBg,
+    fontSize: 36,
+    fontFamily: 'Nunito-ExtraBold',
+    marginBottom: 20
   },
   titleText: {
     fontSize: 26,
@@ -69,6 +97,10 @@ export const GlobalStyles = StyleSheet.create({
     fontSize: 22,
     fontFamily: 'Nunito-Light',
     paddingVertical: 8
+  },
+  regularBoldText: {
+    fontFamily: 'Nunito-Bold',
+    fontSize: 16
   },
   dividerText: {
     fontFamily: 'Nunito-SemiBold',
@@ -141,5 +173,85 @@ export const GlobalStyles = StyleSheet.create({
     position: 'absolute',
     height: 64,
     width: 64
+  },
+  modalLoadingContainer: {
+    backgroundColor: Colors.lightBg,
+    borderRadius: 6,
+    elevation: 3,
+    margin: 36,
+    paddingHorizontal: 24,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  modalCenter: {
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  modalLoading: {
+    padding: 16
+  },
+  modalMessageContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingTop: 16,
+    paddingHorizontal: 8
+  },
+  avatarIcon: {
+    width: 60,
+    height: 60,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: Colors.primaryColor,
+    borderRadius: 30
+  },
+  profileDescContainer: {
+    alignSelf: 'center',
+    padding: 8
+  },
+  profileDescText: {
+    fontSize: 18,
+    fontFamily: 'Nunito-SemiBold'
+  },
+  profileDescTextSmall: {
+    fontSize: 13,
+    color: Colors.subTitle,
+    fontFamily: 'Nunito-Regular'
+  },
+  profileItem: {
+    paddingVertical: 12
+  },
+  profileItemSpace: {
+    justifyContent: 'space-between'
+  },
+  profileItemText: {
+    fontSize: 16,
+    fontFamily: 'Nunito-SemiBold'
+  },
+  profileItemIcon: {
+    paddingHorizontal: 8
+  },
+  warnignMessage: {
+    paddingVertical: 12,
+    paddingHorizontal: 8,
+    marginTop: 8,
+    width: '100%',
+    alignSelf: 'center',
+    justifyContent: 'center',
+    borderRadius: 6,
+    backgroundColor: Colors.warning
+  },
+  warningMessageText: {
+    fontSize: 16,
+    fontFamily: 'Nunito-SemiBold',
+    color: Colors.lightBg
+  },
+  statusDot: {
+    position: 'absolute',
+    width: 10,
+    height: 10,
+    right: 3,
+    top: 3,
+    borderRadius: 5
   }
 })

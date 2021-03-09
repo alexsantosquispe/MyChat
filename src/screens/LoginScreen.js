@@ -1,11 +1,12 @@
 import React, { PureComponent } from 'react'
 import { View, Text, StatusBar } from 'react-native'
 import {
+  DismissKeyboard,
   InputTextBox,
   LinkText,
+  ModalContent,
   RoundedButton,
-  SocialButton,
-  DismissKeyboard
+  SocialButton
 } from '../components'
 import { connect } from 'react-redux'
 import changeNavigationBarColor from 'react-native-navigation-bar-color'
@@ -17,13 +18,14 @@ class LoginScreen extends PureComponent {
   constructor(props) {
     super(props)
     this.goToSignUpScreen = this.goToSignUpScreen.bind(this)
+    this.toggleModal = this.toggleModal.bind(this)
     this.onChangeEmail = this.onChangeEmail.bind(this)
     this.onChangePassword = this.onChangePassword.bind(this)
     this.login = this.login.bind(this)
   }
 
   componentDidMount() {
-    changeNavigationBarColor(Colors.lightBg)
+    changeNavigationBarColor(Colors.lightBg, true)
   }
 
   goToSignUpScreen = () => {
@@ -31,23 +33,28 @@ class LoginScreen extends PureComponent {
     navigation.navigate(SIGNUP)
   }
 
+  toggleModal = () => {
+    const { modalVisibility, setModalVisibility } = this.props
+    setModalVisibility(!modalVisibility)
+  }
+
   onChangeEmail = (value) => {
-    const { user, onChangeUser } = this.props
-    onChangeUser({ ...user, email: value.trim() })
+    const { parameters, onChangeUser } = this.props
+    onChangeUser({ ...parameters, email: value.trim() })
   }
 
   onChangePassword = (value) => {
-    const { user, onChangeUser } = this.props
-    onChangeUser({ ...user, password: value })
+    const { parameters, onChangeUser } = this.props
+    onChangeUser({ ...parameters, password: value })
   }
 
   login = () => {
-    const { user, signIn } = this.props
-    signIn(user)
+    const { parameters, signIn } = this.props
+    signIn(parameters)
   }
 
   render() {
-    const { user = {} } = this.props
+    const { user, parameters, loading, error, modalVisibility } = this.props
     return (
       <DismissKeyboard>
         <View style={GlobalStyles.container}>
@@ -61,17 +68,16 @@ class LoginScreen extends PureComponent {
           <InputTextBox
             icon="mail"
             placeholder="Enter email"
-            value={user.email}
+            value={parameters.email}
             keyboardType="email-address"
-            validationRules={['noEmpty', 'email']}
             onChangeHandler={this.onChangeEmail}
           />
           <InputTextBox
             icon="lock"
             placeholder="Enter password"
             secureTextEntry={true}
-            value={user.password}
-            validationRules={['noEmpty']}
+            secureIcon={true}
+            value={parameters.password}
             onChangeHandler={this.onChangePassword}
           />
           {/* TODO: Complete forgot password */}
@@ -79,27 +85,35 @@ class LoginScreen extends PureComponent {
           <RoundedButton
             title="Login"
             onPressHandler={this.login}
-            disabled={user.email.length === 0 || user.password.length === 0}
+            disabled={
+              parameters.email.length === 0 || parameters.password.length === 0
+            }
           />
-          <Text style={GlobalStyles.dividerText}>or</Text>
+          {/* TODO: Complete Google and Facebook sign in */}
+          {/* <Text style={GlobalStyles.dividerText}>or</Text>
           <SocialButton
             title="Sign In with Google"
             type="google"
-            onPressHandler={() => {
-              alert('SignIn with Google')
-            }}
+            onPressHandler={() => {}}
           />
           <SocialButton
             title="Sign In with Facebook"
             type="facebook"
-            onPressHandler={() => {
-              alert('SigIn with Facebook')
-            }}
-          />
+            onPressHandler={() => {}}
+          /> */}
           <View style={GlobalStyles.signUpSectionContainer}>
             <Text style={GlobalStyles.noAccount}>Don't have an account?</Text>
             <LinkText label="Register" onPressHandler={this.goToSignUpScreen} />
           </View>
+          <ModalContent
+            visibility={modalVisibility}
+            loading={loading}
+            success={user !== null}
+            message={user === null ? error : null}
+            negativeButtonTitle="Try again"
+            negativeAction={this.toggleModal}
+            type="error"
+          />
         </View>
       </DismissKeyboard>
     )
@@ -107,12 +121,18 @@ class LoginScreen extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-  user: state.auth.user
+  user: state.auth.user,
+  parameters: state.auth.parameters,
+  loading: state.auth.loading,
+  error: state.auth.error,
+  modalVisibility: state.auth.modalVisibility
 })
 
 const mapDispatchToProps = (dispatch) => ({
+  signIn: (user) => dispatch(AuthActions.signIn(user)),
   onChangeUser: (user) => dispatch(AuthActions.changeUser(user)),
-  signIn: (user) => dispatch(AuthActions.signIn(user))
+  setModalVisibility: (visibility) =>
+    dispatch(AuthActions.setModalVisibility(visibility))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen)

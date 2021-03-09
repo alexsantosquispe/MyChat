@@ -1,16 +1,20 @@
 export const Colors = {
   primaryColor: '#2663FF',
   secondColor: '#6298FD',
+  inactiveColor: '#616161',
   backgroundColor: '#FAFAFA',
   lightBg: '#FFFFFF',
+  darkBg: '#000000',
   inputTextBg: '#F3F4F6',
   inputTextPlaceholder: '#999DB5',
   inputTextIcon: '#999DB5',
+  divider: '#999DB5',
   title: '#000000',
   subTitle: '#616161',
   buttonTitle: '#FFFFFF',
   buttonTitleDark: '#54555E',
   description: '#C6C6C6',
-  success: '#00D72F',
-  danger: '#DB2C66'
+  success: '#00E096',
+  danger: '#DB2C66',
+  warning: '#ffc552'
 }

@@ -1,13 +1,17 @@
 import * as types from '../constants/ActionTypes'
 
+export const setModalVisibility = (payload) => ({
+  type: types.SIGN_IN_MODAL_VISIBILITY,
+  payload
+})
+
 export const changeUser = (payload) => ({
   type: types.CHANGE_USER,
   payload
 })
 
-export const signInStart = (payload) => ({
-  type: types.SIGN_IN_START,
-  payload
+export const signInStart = () => ({
+  type: types.SIGN_IN_START
 })
 
 export const signInSuccess = (payload) => ({
