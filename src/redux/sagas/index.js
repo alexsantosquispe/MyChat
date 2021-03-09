@@ -1,6 +1,7 @@
 import { all } from 'redux-saga/effects'
-import { default as signIn } from './Auth.saga'
+import { signIn, signUp, signOut } from './Auth.saga'
+import { fetchProfile } from './Profile.saga'
 
 export default function* rootSaga() {
-  yield all([signIn()])
+  yield all([signIn(), signUp(), signOut(), fetchProfile()])
 }

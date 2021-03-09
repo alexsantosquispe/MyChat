@@ -1,15 +1,13 @@
-import React, { PureComponent } from 'react'
-import { NavigationContainer } from '@react-navigation/native'
-import MainStack from './MainStack'
+import React from 'react'
+import { AuthProvider } from './AuthProvider'
+import Router from './Router'
 
-class RootNavigation extends PureComponent {
-  render() {
-    return (
-      <NavigationContainer>
-        <MainStack />
-      </NavigationContainer>
-    )
-  }
+const RootNavigation = () => {
+  return (
+    <AuthProvider>
+      <Router />
+    </AuthProvider>
+  )
 }
 
 export default RootNavigation

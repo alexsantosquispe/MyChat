@@ -5,7 +5,7 @@ import { GlobalStyles } from '../styles'
 const ContactsScreen = () => {
   return (
     <View style={GlobalStyles.container}>
-      <Text>Settings</Text>
+      <Text>Contacts</Text>
     </View>
   )
 }

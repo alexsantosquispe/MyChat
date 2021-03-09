@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { View, Text, TextInput } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import Icon from 'react-native-vector-icons/Feather'
-import * as Validator from '../utils/validation/Validator'
 import { Colors, GlobalStyles } from '../styles'
 
 const InputTextBox = (props) => {
@@ -13,34 +12,18 @@ const InputTextBox = (props) => {
     secureTextEntry = false,
     secureIcon = false,
     onChangeHandler,
-    keyboardType = 'default',
-    validationRules = []
+    isValid = true,
+    errorMessage = null,
+    keyboardType = 'default'
   } = props
 
   const [hide, setHide] = useState(false)
   const [secureText, setSecureText] = useState(secureTextEntry)
-  const [isValid, setIsValid] = useState(true)
-  const [errorMessage, setErrorMessage] = useState(
-    'There is an error in this field'
-  )
   const errorStyle = !isValid ? GlobalStyles.inputTextBoxError : {}
 
   const toggleEyeIcon = () => {
     setHide(!hide)
     setSecureText(hide)
-  }
-
-  const validateText = (text) => {
-    const result = Validator.validate(text, validationRules)
-    setIsValid(result.isValid)
-    if (!result.isValid) {
-      setErrorMessage(result.message)
-    }
-  }
-
-  const onChangeText = (text) => {
-    onChangeHandler(text)
-    validateText(text)
   }
 
   return (
@@ -64,7 +47,7 @@ const InputTextBox = (props) => {
           keyboardType={keyboardType}
           secureTextEntry={secureText}
           value={value}
-          onChangeText={onChangeText}
+          onChangeText={onChangeHandler}
         />
         {secureIcon ? (
           <TouchableOpacity
@@ -78,7 +61,7 @@ const InputTextBox = (props) => {
           </TouchableOpacity>
         ) : null}
       </View>
-      {!isValid ? (
+      {!isValid && errorMessage ? (
         <View>
           <Text style={GlobalStyles.inputTextErrorMessage}>{errorMessage}</Text>
         </View>

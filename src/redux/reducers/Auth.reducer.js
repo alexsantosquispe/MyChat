@@ -1,12 +1,13 @@
 import * as types from '../constants/ActionTypes'
 
 const initialState = {
-  user: {
+  parameters: {
     email: '',
-    password: '',
-    repeatedPassword: ''
+    password: ''
   },
+  user: null,
   loading: false,
+  modalVisibility: false,
   error: null
 }
 
@@ -15,25 +16,40 @@ const authReducer = (state = initialState, { type, payload }) => {
     case types.CHANGE_USER: {
       return {
         ...state,
-        user: payload
+        parameters: payload
       }
     }
+    case types.SIGN_IN_MODAL_VISIBILITY:
+      return {
+        ...state,
+        modalVisibility: payload
+      }
     case types.SIGN_IN_START:
       return {
         ...state,
-        loading: payload
+        loading: true,
+        modalVisibility: true
       }
     case types.SIGN_IN_SUCCESS:
       return {
         ...state,
         loading: false,
         user: payload,
+        parameters: {
+          email: '',
+          password: ''
+        },
+        modalVisibility: false,
         error: null
       }
     case types.SIGN_IN_ERROR:
       return {
         ...state,
         loading: false,
+        parameters: {
+          email: '',
+          password: ''
+        },
         error: payload
       }
     default:

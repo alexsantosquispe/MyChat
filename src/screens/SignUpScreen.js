@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, Keyboard } from 'react-native'
 import { connect } from 'react-redux'
 import * as SignUpActions from '../redux/actions/SignUp.action'
 import {
@@ -7,6 +7,7 @@ import {
   DismissKeyboard,
   InputTextBox,
   LinkText,
+  ModalContent,
   RoundedButton
 } from '../components'
 import { GlobalStyles } from '../styles'
@@ -15,9 +16,9 @@ class SignUpScreen extends PureComponent {
   constructor(props) {
     super(props)
     this.goBackLogin = this.goBackLogin.bind(this)
+    this.toggleModal = this.toggleModal.bind(this)
     this.onChangeEmail = this.onChangeEmail.bind(this)
     this.onChangePassword = this.onChangePassword.bind(this)
-    this.onChangeConfirmPassword = this.onChangeConfirmPassword.bind(this)
     this.register = this.register.bind(this)
   }
 
@@ -26,28 +27,29 @@ class SignUpScreen extends PureComponent {
     navigation.goBack()
   }
 
+  toggleModal = () => {
+    const { modalVisibility, setModalVisibility } = this.props
+    setModalVisibility(!modalVisibility)
+  }
+
   onChangeEmail = (value) => {
-    const { user, onChangeUser } = this.props
-    onChangeUser({ ...user, email: value })
+    const { parameters, onChangeParameters } = this.props
+    onChangeParameters({ ...parameters, email: value })
   }
 
   onChangePassword = (value) => {
-    const { user, onChangeUser } = this.props
-    onChangeUser({ ...user, password: value })
-  }
-
-  onChangeConfirmPassword = (value) => {
-    const { user, onChangeUser } = this.props
-    onChangeUser({ ...user, repeatedPassword: value })
+    const { parameters, onChangeParameters } = this.props
+    onChangeParameters({ ...parameters, password: value })
   }
 
   register = () => {
-    const { user, signUp } = this.props
-    signUp(user)
+    const { parameters, signUp } = this.props
+    Keyboard.dismiss()
+    signUp(parameters)
   }
 
   render() {
-    const { user } = this.props
+    const { user, parameters, loading, error, modalVisibility } = this.props
     return (
       <DismissKeyboard>
         <View style={GlobalStyles.container}>
@@ -58,49 +60,41 @@ class SignUpScreen extends PureComponent {
               Let's create your account
             </Text>
           </View>
-          {/* <InputTextBox
-          icon="user"
-          placeholder="Enter your name"
-          value={name}
-          onChangeHandler={(text) => setName(text)}
-        /> */}
           <InputTextBox
             icon="mail"
             placeholder="Enter email"
-            value={user.email}
+            value={parameters.email}
             keyboardType="email-address"
-            validationRules={['noEmpty', 'email']}
             onChangeHandler={this.onChangeEmail}
           />
           <InputTextBox
             icon="lock"
             placeholder="Enter password"
             secureTextEntry={true}
-            value={user.password}
-            validationRules={['noEmpty']}
+            secureIcon={true}
+            value={parameters.password}
             onChangeHandler={this.onChangePassword}
-          />
-          <InputTextBox
-            icon="lock"
-            placeholder="Confirm password"
-            secureTextEntry={true}
-            value={user.repeatedPassword}
-            validationRules={['noEmpty']}
-            onChangeHandler={this.onChangeConfirmPassword}
           />
           <RoundedButton
             title="Register"
             onPressHandler={this.register}
             disabled={
-              user.email.length === 0 ||
-              user.password.length === 0 ||
-              user.repeatedPassword.length === 0
+              parameters.email.length === 0 || parameters.password.length === 0
             }
           />
           <View style={GlobalStyles.signUpSectionContainer}>
             <Text style={GlobalStyles.noAccount}>Already have an account?</Text>
             <LinkText label="Login" onPressHandler={this.goBackLogin} />
           </View>
+          <ModalContent
+            visibility={modalVisibility}
+            loading={loading}
+            success={user !== null}
+            message={user === null ? error : null}
+            negativeButtonTitle="Try again"
+            negativeAction={this.toggleModal}
+            type="error"
+          />
         </View>
       </DismissKeyboard>
     )
@@ -108,12 +102,18 @@ class SignUpScreen extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-  user: state.signUp.user
+  user: state.signUp.user,
+  parameters: state.signUp.parameters,
+  loading: state.signUp.loading,
+  error: state.signUp.error,
+  modalVisibility: state.signUp.modalVisibility
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  onChangeUser: (user) => dispatch(SignUpActions.changeNewUser(user)),
-  signUp: (user) => dispatch(SignUpActions.signUp(user))
+  signUp: (user) => dispatch(SignUpActions.signUp(user)),
+  onChangeParameters: (user) => dispatch(SignUpActions.changeNewUser(user)),
+  setModalVisibility: (visibility) =>
+    dispatch(SignUpActions.setModalVisibility(visibility))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUpScreen)
