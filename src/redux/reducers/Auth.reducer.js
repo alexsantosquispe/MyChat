@@ -39,7 +39,6 @@ const authReducer = (state = initialState, { type, payload }) => {
           email: '',
           password: ''
         },
-        modalVisibility: false,
         error: null
       }
     case types.SIGN_IN_ERROR:
@@ -50,6 +49,7 @@ const authReducer = (state = initialState, { type, payload }) => {
           email: '',
           password: ''
         },
+        modalVisibility: true,
         error: payload
       }
     default:

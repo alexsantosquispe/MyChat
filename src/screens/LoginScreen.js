@@ -53,6 +53,11 @@ class LoginScreen extends PureComponent {
     signIn(parameters)
   }
 
+  componentWillUnmount() {
+    const { setModalVisibility } = this.props
+    setModalVisibility(false)
+  }
+
   render() {
     const { user, parameters, loading, error, modalVisibility } = this.props
     return (
