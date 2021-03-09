@@ -5,7 +5,7 @@ import StatusDot from './StatusDot'
 import { Colors, GlobalStyles } from '../styles'
 
 const ProfileEditable = ({ user, onPressHandler }) => {
-  const { email, nickName, status } = user
+  const { email = '', nickName = '', status = false } = user
 
   return (
     <TouchableOpacity

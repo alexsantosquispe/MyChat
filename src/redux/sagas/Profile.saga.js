@@ -12,12 +12,20 @@ function* getCurrentProfile() {
       yield put(ProfileActions.setInitProfile(currentUser))
     }
     yield put(ProfileActions.loadingProfile())
-    const response = yield call(FirebaseUsers.fetchUserById, currentUser.authId)
-    if (response.success) {
-      yield put(ProfileActions.profileSuccess(response.result))
-      yield call(LocalStorage.saveData, { ...currentUser, ...response.result })
-    } else {
-      yield put(ProfileActions.profileError(response.error))
+    if (currentUser) {
+      const response = yield call(
+        FirebaseUsers.fetchUserById,
+        currentUser.authId
+      )
+      if (response.success) {
+        yield put(ProfileActions.profileSuccess(response.result))
+        yield call(LocalStorage.saveData, {
+          ...currentUser,
+          ...response.result
+        })
+      } else {
+        yield put(ProfileActions.profileError(response.error))
+      }
     }
   } catch (error) {
     yield put(ProfileActions.profileError(error))

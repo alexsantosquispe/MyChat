@@ -16,10 +16,6 @@ function* firebaseLogin({ payload }) {
     if (response.success) {
       const { user } = response.result
       yield put(AuthActions.signInSuccess(user))
-      yield call(LocalStorage.saveData, USER_KEY, {
-        uid: user.uid,
-        email: user.email
-      })
     } else {
       const { error } = response
       yield put(AuthActions.signInError(error.code))
@@ -37,17 +33,12 @@ function* firebaseSignUp({ payload }) {
     if (response.success) {
       const { user } = response.result
       yield call(FirebaseAuth.sendEmailVerification)
-      yield put(SignUpActions.signUpSuccess(user))
 
       const { success, result } = yield call(FirebaseUsers.createUser, user)
       if (success) {
         yield call(LocalStorage.saveData, USER_KEY, result)
-      } else {
-        yield call(LocalStorage.saveData, USER_KEY, {
-          authId: user.uid,
-          email: user.email
-        })
       }
+      yield put(SignUpActions.signUpSuccess(user))
     } else {
       const { error } = response
       yield put(SignUpActions.signUpError(error.code))

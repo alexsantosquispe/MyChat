@@ -34,12 +34,12 @@ class ProfileScreen extends PureComponent {
 
   goToSettingsScreen = () => {
     const { navigation } = this.props
-    navigation.navigate(SETTINGS)
+    // navigation.navigate(SETTINGS)
   }
 
   goToEditProfileScreen = () => {
     const { navigation } = this.props
-    navigation.navigate(EDIT_PROFILE)
+    // navigation.navigate(EDIT_PROFILE)
   }
 
   signOut = () => {
@@ -51,8 +51,13 @@ class ProfileScreen extends PureComponent {
     this.toggleModal()
   }
 
+  componentWillUnmount() {
+    const { setModalVisibility } = this.props
+    setModalVisibility(false)
+  }
+
   render() {
-    const { user, loading, error, modalVisibility } = this.props
+    const { user, modalVisibility } = this.props
     return (
       <View style={GlobalStyles.subContainer}>
         <Text style={GlobalStyles.bigTitle}>My Profile</Text>
@@ -60,9 +65,9 @@ class ProfileScreen extends PureComponent {
           user={user}
           onPressHandler={this.goToEditProfileScreen}
         />
-        {user.emailVerified ? (
+        {user && user.emailVerified && (
           <WarningMessage message="Email not verified" />
-        ) : null}
+        )}
         <View style={{ marginTop: 8 }}>
           <TouchableItem
             title="Preferences"

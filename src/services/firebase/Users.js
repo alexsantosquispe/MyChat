@@ -75,7 +75,7 @@ export const createUser = async (payload) => {
 
 export const updateUser = async (payload) => {
   const {
-    uid,
+    authId,
     firstName,
     lastName,
     nickName,
@@ -94,7 +94,7 @@ export const updateUser = async (payload) => {
       phoneNumber,
       modifiedAt: firestore.FieldValue.serverTimestamp()
     }
-    await users.doc(uid).update(userModified)
+    await users.doc(authId).update(userModified)
     return { success: true, result: userModified }
   } catch (error) {
     return { success: false, error }
