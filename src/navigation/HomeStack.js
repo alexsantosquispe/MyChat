@@ -18,7 +18,7 @@ const Tabs = createBottomTabNavigator()
 const HomeTab = () => {
   return (
     <Tabs.Navigator
-      initialRouteName={HOME}
+      initialRouteName={CONTACTS}
       tabBarOptions={{
         activeTintColor: Colors.primaryColor,
         inactiveTintColor: Colors.inactiveColor,

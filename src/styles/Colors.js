@@ -1,6 +1,7 @@
 export const Colors = {
   primaryColor: '#2663FF',
   secondColor: '#6298FD',
+  statusBar: '#E8E8E8',
   inactiveColor: '#616161',
   backgroundColor: '#FAFAFA',
   lightBg: '#FFFFFF',
@@ -8,6 +9,7 @@ export const Colors = {
   inputTextBg: '#F3F4F6',
   inputTextPlaceholder: '#999DB5',
   inputTextIcon: '#999DB5',
+  inputCloseIcon: '#e8e8e8',
   divider: '#999DB5',
   title: '#000000',
   subTitle: '#616161',

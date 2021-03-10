@@ -12,7 +12,7 @@ export const GlobalStyles = StyleSheet.create({
   },
   subContainer: {
     flex: 1,
-    padding: 16,
+    paddingHorizontal: 16,
     backgroundColor: Colors.lightBg
   },
   rowContainer: {
@@ -22,12 +22,12 @@ export const GlobalStyles = StyleSheet.create({
     marginBottom: 36
   },
   inputTextBoxContainer: {
-    marginVertical: 5
+    marginVertical: 4
   },
   inputTextBoxRow: {
     flexDirection: 'row',
     backgroundColor: Colors.inputTextBg,
-    borderRadius: 6,
+    borderRadius: 8,
     alignItems: 'center',
     width: '100%'
   },
@@ -48,8 +48,14 @@ export const GlobalStyles = StyleSheet.create({
   inputTextBoxIcon: {
     paddingHorizontal: 8
   },
+  clearSearchBar: {
+    backgroundColor: Colors.inputCloseIcon,
+    padding: 4,
+    borderRadius: 20,
+    marginRight: 8
+  },
   baseButton: {
-    borderRadius: 6,
+    borderRadius: 8,
     paddingVertical: 12,
     margin: 8,
     width: '100%',
@@ -85,8 +91,9 @@ export const GlobalStyles = StyleSheet.create({
   bigTitle: {
     color: Colors.darkBg,
     fontSize: 36,
-    fontFamily: 'Nunito-ExtraBold',
-    marginBottom: 20
+    fontFamily: 'Nunito-Regular',
+    marginTop: 16,
+    marginBottom: 8
   },
   titleText: {
     fontSize: 26,
@@ -253,5 +260,38 @@ export const GlobalStyles = StyleSheet.create({
     right: 3,
     top: 3,
     borderRadius: 5
+  },
+  contactAvatar: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    marginRight: 16
+  },
+  contactImage: {
+    width: 48,
+    height: 48,
+    overflow: 'hidden',
+    borderRadius: 24
+  },
+  contactFirstLetter: {
+    fontSize: 20,
+    fontFamily: 'Nunito-SemiBold',
+    color: Colors.lightBg
+  },
+  contactItemContainer: {
+    flexDirection: 'row',
+    paddingVertical: 8,
+    alignItems: 'center'
+  },
+  contactItemTitle: {
+    fontSize: 17,
+    fontFamily: 'Nunito-SemiBold'
+  },
+  contactItemSubTitle: {
+    fontSize: 15,
+    fontFamily: 'Nunito-Regular',
+    color: Colors.subTitle
   }
 })
