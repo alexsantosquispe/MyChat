@@ -14,7 +14,12 @@ export const fetchUsers = () => {
                 ...documentSnapshot.data()
               }
             })
-            resolve({ success: true, result: users })
+            resolve({
+              success: true,
+              result: users.filter(
+                (document) => document.authId !== 'UwsRfKMtWkZt8plRf4CrhdO4Mcf2'
+              )
+            })
           },
           (error) => {
             reject({ success: false, error })
