@@ -35,6 +35,12 @@ node_modules/
 npm-debug.log
 yarn-error.log
 
+# miselaneus
+yarn.lock
+.vscode
+coverage
+__tests__/components/__snapshots__
+
 # BUCK
 buck-out/
 \.buckd/

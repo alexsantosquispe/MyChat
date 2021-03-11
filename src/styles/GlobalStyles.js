@@ -262,6 +262,7 @@ export const GlobalStyles = StyleSheet.create({
     borderRadius: 5
   },
   contactAvatar: {
+    backgroundColor: Colors.primaryColor,
     justifyContent: 'center',
     alignItems: 'center',
     width: 48,

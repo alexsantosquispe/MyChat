@@ -4,7 +4,7 @@ import CircleAvatar from './CircleAvatar'
 import { GlobalStyles } from '../styles'
 
 const ContactItem = ({ user }) => {
-  return (
+  return user ? (
     <View style={GlobalStyles.contactItemContainer}>
       <CircleAvatar username={user.nickName} imageSrc={''} />
       <View>
@@ -12,7 +12,7 @@ const ContactItem = ({ user }) => {
         <Text style={GlobalStyles.contactItemSubTitle}>{user.email}</Text>
       </View>
     </View>
-  )
+  ) : null
 }
 
 export default ContactItem
