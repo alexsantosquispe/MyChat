@@ -28,7 +28,6 @@ const InputTextBox = (props) => {
   const renderSecureIcon = () => {
     return secureIcon ? (
       <TouchableOpacity
-        ref="eyebutton"
         style={GlobalStyles.inputTextBoxIcon}
         onPress={toggleEyeIcon}>
         {hide ? (
