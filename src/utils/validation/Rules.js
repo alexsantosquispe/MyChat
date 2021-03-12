@@ -4,7 +4,10 @@
  */
 const isEmail = (email) => {
   const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$/
-  const isValid = email && typeof email === 'string' && regex.test(email)
+  let isValid = false
+
+  if (!email) return { isValid, message: 'Enter a valid email address' }
+  isValid = typeof email === 'string' && regex.test(email)
   return !isValid
     ? { isValid, message: 'Enter a valid email address' }
     : { isValid }
@@ -15,6 +18,7 @@ const isEmail = (email) => {
  * @param {string} text
  */
 const noEmpty = (text) => {
+  if (!text) return { isValid: false, message: 'This field cannot be empty' }
   const isValid = text && typeof text === 'string'
   return !isValid
     ? { isValid, message: 'This field cannot be empty' }

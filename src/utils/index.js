@@ -10,7 +10,11 @@ const palleteColor = [
   '#573b01',
   '#78818a'
 ]
-
+/**
+ * Gets the username part of some email
+ * @param {string} email
+ * @returns {string}
+ */
 export const generateNickName = (email) => {
   if (email) {
     const arrUser = email.split('@')
@@ -19,6 +23,11 @@ export const generateNickName = (email) => {
   return email
 }
 
+/**
+ * Gets the string passed with the first letter in uppercase
+ * @param {string} str
+ * @returns {string}
+ */
 export const upperFirst = (str) => {
   let upperFirstLetter = str
   if (str && str.length > 1) {
@@ -27,13 +36,11 @@ export const upperFirst = (str) => {
   return upperFirstLetter
 }
 
+/**
+ * Gets a random color between ten colors by default
+ * @returns {string}
+ */
 export const getRandomColor = () => {
-  const primaryColor = '#2663FF'
-  try {
-    const index = Math.floor(Math.random() * 10)
-    return palleteColor[index]
-  } catch (error) {
-    console.log(error)
-    return primaryColor
-  }
+  const index = Math.floor(Math.random() * 10)
+  return palleteColor[index]
 }

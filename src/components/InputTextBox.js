@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, TextInput } from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import { View, Text, TextInput, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/Feather'
 import { Colors, GlobalStyles } from '../styles'
 
@@ -26,18 +25,45 @@ const InputTextBox = (props) => {
     setSecureText(hide)
   }
 
+  const renderSecureIcon = () => {
+    return secureIcon ? (
+      <TouchableOpacity
+        ref="eyebutton"
+        style={GlobalStyles.inputTextBoxIcon}
+        onPress={toggleEyeIcon}>
+        {hide ? (
+          <Icon name={'eye'} size={20} color={Colors.inputTextIcon} />
+        ) : (
+          <Icon name={'eye-off'} size={20} color={Colors.inputTextIcon} />
+        )}
+      </TouchableOpacity>
+    ) : null
+  }
+
+  const renderInputTextIcon = () => {
+    return icon ? (
+      <View style={GlobalStyles.inputTextBoxIcon}>
+        {isValid ? (
+          <Icon name={icon} size={20} color={Colors.inputTextIcon} />
+        ) : (
+          <Icon name={icon} size={20} color={Colors.danger} />
+        )}
+      </View>
+    ) : null
+  }
+
+  const renderValidationMessage = () => {
+    return !isValid && errorMessage ? (
+      <View>
+        <Text style={GlobalStyles.inputTextErrorMessage}>{errorMessage}</Text>
+      </View>
+    ) : null
+  }
+
   return (
     <View style={GlobalStyles.inputTextBoxContainer}>
       <View style={[GlobalStyles.inputTextBoxRow, errorStyle]}>
-        {icon ? (
-          <View style={GlobalStyles.inputTextBoxIcon}>
-            {isValid ? (
-              <Icon name={icon} size={20} color={Colors.inputTextIcon} />
-            ) : (
-              <Icon name={icon} size={20} color={Colors.danger} />
-            )}
-          </View>
-        ) : null}
+        {renderInputTextIcon()}
         <TextInput
           style={GlobalStyles.inputTextBox}
           selectionColor={Colors.primaryColor}
@@ -49,23 +75,9 @@ const InputTextBox = (props) => {
           value={value}
           onChangeText={onChangeHandler}
         />
-        {secureIcon ? (
-          <TouchableOpacity
-            style={GlobalStyles.inputTextBoxIcon}
-            onPress={toggleEyeIcon}>
-            {hide ? (
-              <Icon name={'eye'} size={20} color={Colors.inputTextIcon} />
-            ) : (
-              <Icon name={'eye-off'} size={20} color={Colors.inputTextIcon} />
-            )}
-          </TouchableOpacity>
-        ) : null}
+        {renderSecureIcon()}
       </View>
-      {!isValid && errorMessage ? (
-        <View>
-          <Text style={GlobalStyles.inputTextErrorMessage}>{errorMessage}</Text>
-        </View>
-      ) : null}
+      {renderValidationMessage()}
     </View>
   )
 }
