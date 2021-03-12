@@ -1,13 +1,15 @@
 import React from 'react'
 import { View, Text, TouchableOpacity, Image } from 'react-native'
-import { GlobalStyles, Resources } from '../styles'
-import * as Res from '../styles/Resources'
+import { GlobalStyles } from '../styles'
+import * as Resources from '../styles/Resources'
 
 const SocialButton = ({ title, type, onPressHandler }) => {
-  const iconPath = type ? Res[type] : Res.google
+  const iconPath = type ? Resources[type] : Resources.google
 
   return (
-    <TouchableOpacity onPress={() => {}} style={GlobalStyles.outLineButton}>
+    <TouchableOpacity
+      onPress={onPressHandler}
+      style={GlobalStyles.outLineButton}>
       <View style={GlobalStyles.iconContainer}>
         <Image source={iconPath} style={GlobalStyles.outLineButtonIcon} />
       </View>
