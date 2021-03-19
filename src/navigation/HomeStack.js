@@ -1,15 +1,24 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import Icon from 'react-native-vector-icons/Feather'
+import Icon from 'react-native-vector-icons/FontAwesome5'
 import {
   ContactsScreen,
   EditProfileScreen,
   HomeScreen,
+  NewConversation,
   ProfileScreen,
   SettingsScreen
 } from '../screens'
-import { HOME, CONTACTS, PROFILE, EDIT_PROFILE, SETTINGS } from './RoutesNames'
+import {
+  HOME,
+  CHAT,
+  CONTACTS,
+  PROFILE,
+  EDIT_PROFILE,
+  SETTINGS,
+  NEW_CHAT
+} from './RoutesNames'
 import { Colors } from '../styles'
 
 const Stack = createStackNavigator()
@@ -18,7 +27,7 @@ const Tabs = createBottomTabNavigator()
 const HomeTab = () => {
   return (
     <Tabs.Navigator
-      initialRouteName={CONTACTS}
+      initialRouteName={CHAT}
       tabBarOptions={{
         activeTintColor: Colors.primaryColor,
         inactiveTintColor: Colors.inactiveColor,
@@ -28,11 +37,11 @@ const HomeTab = () => {
         }
       }}>
       <Tabs.Screen
-        name={'Chat'}
+        name={CHAT}
         component={HomeScreen}
         options={{
-          tabBarIcon: ({ color }) => (
-            <Icon name="message-circle" color={color} size={26} />
+          tabBarIcon: ({ color, focused }) => (
+            <Icon name="comments" color={color} size={25} solid={focused} />
           )
         }}
       />
@@ -40,8 +49,8 @@ const HomeTab = () => {
         name={CONTACTS}
         component={ContactsScreen}
         options={{
-          tabBarIcon: ({ color }) => (
-            <Icon name="book" color={color} size={26} />
+          tabBarIcon: ({ color, focused }) => (
+            <Icon name="address-book" color={color} size={25} solid={focused} />
           )
         }}
       />
@@ -49,8 +58,8 @@ const HomeTab = () => {
         name={PROFILE}
         component={ProfileScreen}
         options={{
-          tabBarIcon: ({ color }) => (
-            <Icon name="user" color={color} size={26} />
+          tabBarIcon: ({ color, focused }) => (
+            <Icon name="user" color={color} size={25} solid={focused} />
           )
         }}
       />
@@ -66,6 +75,7 @@ const HomeStack = () => {
         component={HomeTab}
         options={{ headerShown: false }}
       />
+      <Stack.Screen name={NEW_CHAT} component={NewConversation} />
       <Stack.Screen name={SETTINGS} component={SettingsScreen} />
       <Stack.Screen name={EDIT_PROFILE} component={EditProfileScreen} />
     </Stack.Navigator>

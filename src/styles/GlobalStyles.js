@@ -294,5 +294,90 @@ export const GlobalStyles = StyleSheet.create({
     fontSize: 15,
     fontFamily: 'Nunito-Regular',
     color: Colors.subTitle
+  },
+  chatItemContainer: {
+    flexDirection: 'row',
+    borderRadius: 12,
+    marginVertical: 5,
+    padding: 8
+  },
+  chatItemContent: {
+    flex: 1,
+    marginHorizontal: 8,
+    justifyContent: 'center'
+  },
+  chatItemTitle: {
+    fontSize: 18,
+    fontFamily: 'Nunito-Bold',
+    marginBottom: 6
+  },
+  chatItemSubTitleActive: {
+    fontSize: 14,
+    fontFamily: 'Nunito-Bold',
+    color: Colors.darkBg
+  },
+  chatItemSubTitle: {
+    fontSize: 14,
+    fontFamily: 'Nunito-SemiBold',
+    color: Colors.inputTextIcon
+  },
+  chatItemTimeDesc: {
+    alignItems: 'flex-end'
+  },
+  chatItemTime: {
+    fontSize: 12,
+    fontFamily: 'Nunito-Bold',
+    color: Colors.inputTextIcon
+  },
+  badge: {
+    backgroundColor: Colors.primaryColor,
+    paddingHorizontal: 6,
+    paddingVertical: 1,
+    marginVertical: 8,
+    borderRadius: 12,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  badgeText: {
+    color: Colors.lightBg,
+    fontSize: 12,
+    fontFamily: 'Nunito-Bold'
+  },
+  floatButton: {
+    backgroundColor: Colors.primaryColor,
+    width: 56,
+    height: 56,
+    position: 'absolute',
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    bottom: 16,
+    borderRadius: 29,
+    elevation: 10
+  },
+  right: {
+    right: 16
+  },
+  left: {
+    left: 16
+  },
+  touchableContainer: {
+    flexDirection: 'row',
+    paddingVertical: 8,
+    alignItems: 'center'
+  },
+  iconWithBackground: {
+    backgroundColor: Colors.inputTextBg,
+    borderRadius: 24,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 8,
+    width: 48,
+    height: 48
+  },
+  touchableText: {
+    fontFamily: 'Nunito-Bold',
+    fontSize: 16,
+    marginHorizontal: 16
   }
 })
